@@ -1,0 +1,39 @@
+plugins {
+    id 'org.springframework.boot' version '2.5.3'
+    id 'io.spring.dependency-management' version '1.0.11.RELEASE'
+    id 'java'
+    id "io.freefair.lombok" version "6.0.0-m2"
+}
+
+group = 'guru.qa'
+version = '0.0.1'
+sourceCompatibility = '11'
+
+def junitVersion = "5.8.1",
+    allureVersion = "2.16.1",
+    selenideVersion = '6.9.0'
+
+configurations {
+    compileOnly {
+        extendsFrom annotationProcessor
+    }
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+    implementation 'io.springfox:springfox-boot-starter:3.0.0'
+    testImplementation "com.codeborne:selenide:$selenideVersion"
+    testImplementation "org.junit.jupiter:junit-jupiter-api:$junitVersion"
+    compileOnly 'org.projectlombok:lombok'
+    annotationProcessor 'org.projectlombok:lombok'
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+    testImplementation 'io.rest-assured:rest-assured:4.4.0'
+}
+
+test {
+    useJUnitPlatform()
+}
